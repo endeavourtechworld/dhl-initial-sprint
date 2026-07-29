@@ -1,0 +1,663 @@
+/* CSS Design System for DHL Customer Registration */
+
+:root {
+    --dhl-red: #D00000;
+    --dhl-red-hover: #b00000;
+    --dhl-yellow: #FFCC00;
+    --dhl-yellow-hover: #e6b800;
+    --neutral-dark: #121214;
+    --neutral-card: rgba(26, 26, 29, 0.75);
+    --neutral-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --success: #10b981;
+    --error: #ef4444;
+    --input-bg: rgba(255, 255, 255, 0.03);
+    --input-focus-border: rgba(255, 204, 0, 0.5);
+    --shadow-main: 0 20px 40px rgba(0, 0, 0, 0.35);
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--neutral-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background Graphic Elements */
+.background-decor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+}
+
+.circle-red {
+    width: 50vw;
+    height: 50vw;
+    background: var(--dhl-red);
+    top: -20vw;
+    right: -10vw;
+}
+
+.circle-yellow {
+    width: 45vw;
+    height: 45vw;
+    background: var(--dhl-yellow);
+    bottom: -15vw;
+    left: -10vw;
+}
+
+/* App Wrapper */
+.app-container {
+    width: 100%;
+    max-width: 520px;
+    padding: 24px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Header */
+.dhl-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4px;
+}
+
+.dhl-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-red {
+    color: var(--dhl-red);
+    background: linear-gradient(135deg, var(--dhl-red) 30%, #ff4d4d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-text {
+    color: var(--dhl-yellow);
+    margin-left: 4px;
+    font-weight: 600;
+}
+
+.system-status {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--neutral-border);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--success);
+}
+
+/* Premium Card container */
+.card-container {
+    position: relative;
+    width: 100%;
+}
+
+.card {
+    background: var(--neutral-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--neutral-border);
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: var(--shadow-main);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.card.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.card.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-header h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--neutral-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+}
+
+.input-wrapper input.is-valid {
+    border-color: var(--success);
+}
+
+.input-wrapper input.is-invalid {
+    border-color: var(--error);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 4px;
+}
+
+.toggle-password:hover {
+    color: var(--dhl-yellow);
+}
+
+/* Validation Feedback & Password strength list */
+.error-msg {
+    color: var(--error);
+    font-size: 12px;
+    min-height: 16px;
+    display: block;
+    margin-top: 2px;
+}
+
+.password-requirements {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.req-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.req-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.req-list li {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+    transition: color var(--transition-fast);
+}
+
+.req-list li::before {
+    content: '•';
+    position: absolute;
+    left: 4px;
+    color: var(--text-muted);
+}
+
+.req-list li.valid {
+    color: var(--success);
+}
+
+.req-list li.valid::before {
+    content: '✓';
+    color: var(--success);
+    font-weight: bold;
+    left: 2px;
+}
+
+/* Checkbox Terms and Conditions */
+.form-terms {
+    margin: 8px 0;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    cursor: pointer;
+    font-size: 13px;
+    user-select: none;
+    line-height: 1.4;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--neutral-border);
+    border-radius: 4px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    border-color: var(--dhl-yellow);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--dhl-yellow);
+    border-color: var(--dhl-yellow);
+}
+
+.checkmark::after {
+    content: "";
+    display: none;
+    width: 5px;
+    height: 9px;
+    border: solid var(--neutral-dark);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+}
+
+.checkbox-container input:checked ~ .checkmark::after {
+    display: block;
+}
+
+.label-text {
+    color: var(--text-secondary);
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    outline: none;
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--dhl-red) 0%, #ff1a1a 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(208, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--dhl-red-hover) 0%, var(--dhl-red) 100%);
+    box-shadow: 0 6px 16px rgba(208, 0, 0, 0.35);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn:disabled {
+    background: var(--text-muted);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Links */
+.dhl-link {
+    color: var(--dhl-yellow);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.dhl-link:hover {
+    color: var(--dhl-yellow-hover);
+    text-decoration: underline;
+}
+
+.dhl-link.text-bold {
+    font-weight: 700;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--dhl-yellow);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    outline: none;
+}
+
+.btn-link:disabled {
+    color: var(--text-muted);
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+/* Card Footers */
+.card-footer {
+    border-top: 1px solid var(--neutral-border);
+    padding-top: 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.highlight {
+    color: var(--dhl-yellow);
+    font-weight: 600;
+}
+
+/* OTP Verification UI */
+.icon-badge {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 204, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    border: 1px solid rgba(255, 204, 0, 0.2);
+}
+
+.verify-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--dhl-yellow);
+}
+
+.otp-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.otp-input {
+    width: 48px;
+    height: 52px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--neutral-border);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    outline: none;
+    transition: all var(--transition-fast);
+}
+
+.otp-input:focus {
+    border-color: var(--dhl-yellow);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+}
+
+.otp-expiry {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.timer-countdown {
+    font-weight: 700;
+    color: var(--dhl-red);
+}
+
+/* Success View UI */
+.success-animation {
+    margin: 0 auto 20px;
+    width: 80px;
+    height: 80px;
+}
+
+.checkmark-svg {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2.5;
+    stroke: var(--success);
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px var(--success);
+    animation: fill-success .4s ease-in-out .4s forwards, scale-success .3s ease-in-out .9s both;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2.5;
+    stroke-miterlimit: 10;
+    stroke: var(--success);
+    fill: none;
+    animation: stroke-success 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke-success 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke-success {
+    100% { stroke-dashoffset: 0; }
+}
+@keyframes fill-success {
+    100% { box-shadow: inset 0px 0px 0px 40px rgba(16, 185, 129, 0.05); }
+}
+@keyframes scale-success {
+    0%, 100% { transform: none; }
+    50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+.success-details {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--neutral-border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.detail-label {
+    color: var(--text-secondary);
+}
+
+.detail-val {
+    font-weight: 600;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+/* Spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Alert Boxes */
+.alert-box {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.error-alert {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--error);
+}
+
+/* Footer styling */
+.dhl-footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 12px 0;
+}
+
+.dhl-link-sub {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin: 0 4px;
+}
+
+.dhl-link-sub:hover {
+    color: var(--dhl-yellow);
+}
+
+/* Responsive adjustments */
+@media(max-width: 480px) {
+    .card {
+        padding: 24px;
+    }
+}
