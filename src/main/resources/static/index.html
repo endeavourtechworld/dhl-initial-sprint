@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHL Customer Registration - Secure Sign Up</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-decor">
+        <div class="circle circle-red"></div>
+        <div class="circle circle-yellow"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="dhl-header">
+            <div class="dhl-logo">
+                <span class="logo-red">DHL</span><span class="logo-text">Express</span>
+            </div>
+            <div class="system-status">
+                <span class="status-dot"></span> Secure Portal
+            </div>
+        </header>
+
+        <main class="card-container">
+            <!-- VIEW 1: SIGN UP FORM -->
+            <section id="signup-view" class="card active">
+                <div class="card-header">
+                    <h1>Create DHL Account</h1>
+                    <p class="subtitle">Join thousands of customers managing shipments worldwide.</p>
+                </div>
+
+                <div id="general-error" class="alert-box error-alert hidden"></div>
+
+                <form id="signup-form" novalidate>
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="fullName" placeholder="John Doe" required autocomplete="name">
+                            <span class="val-icon"></span>
+                        </div>
+                        <span class="error-msg" id="name-error"></span>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" placeholder="john.doe@company.com" required autocomplete="email">
+                            <span class="val-icon"></span>
+                        </div>
+                        <span class="error-msg" id="email-error"></span>
+                    </div>
+
+                    <!-- Mobile Number -->
+                    <div class="form-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="mobileNumber" placeholder="+1234567890" required autocomplete="tel">
+                            <span class="val-icon"></span>
+                        </div>
+                        <span class="error-msg" id="mobile-error"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" placeholder="••••••••" required autocomplete="new-password">
+                            <button type="button" class="toggle-password" tabindex="-1">Show</button>
+                        </div>
+                        <!-- Password Security Guidelines -->
+                        <div class="password-requirements">
+                            <p class="req-title">Password must contain:</p>
+                            <ul class="req-list">
+                                <li id="req-length" class="invalid">At least 8 characters</li>
+                                <li id="req-upper" class="invalid">An uppercase letter (A-Z)</li>
+                                <li id="req-lower" class="invalid">A lowercase letter (a-z)</li>
+                                <li id="req-number" class="invalid">A number (0-9)</li>
+                                <li id="req-special" class="invalid">A special character (@$!%*?&...)</li>
+                            </ul>
+                        </div>
+                        <span class="error-msg" id="password-error"></span>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="confirmPassword" placeholder="••••••••" required autocomplete="new-password">
+                            <span class="val-icon"></span>
+                        </div>
+                        <span class="error-msg" id="confirm-error"></span>
+                    </div>
+
+                    <!-- Terms & Privacy -->
+                    <div class="form-terms">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="terms" required>
+                            <span class="checkmark"></span>
+                            <span class="label-text">
+                                I agree to the <a href="#" class="dhl-link">Terms & Conditions</a> and <a href="#" class="dhl-link">Privacy Policy</a>
+                            </span>
+                        </label>
+                        <span class="error-msg" id="terms-error"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="btn-submit" class="btn btn-primary">
+                        <span class="btn-text">Create DHL Account</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                </form>
+
+                <div class="card-footer">
+                    <p>Already have a DHL account? <a href="#" class="dhl-link text-bold">Sign In</a></p>
+                </div>
+            </section>
+
+            <!-- VIEW 2: OTP VERIFICATION -->
+            <section id="verify-view" class="card hidden">
+                <div class="card-header text-center">
+                    <div class="icon-badge">
+                        <svg class="verify-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.22 0l-2.25 1.5M12 22.5V13.5" />
+                        </svg>
+                    </div>
+                    <h1>Verify Your Email</h1>
+                    <p class="subtitle">We've sent a 6-digit verification code to <span id="user-email-placeholder" class="highlight">user@example.com</span></p>
+                </div>
+
+                <div id="verify-error" class="alert-box error-alert hidden"></div>
+
+                <form id="verify-form" novalidate>
+                    <div class="otp-container">
+                        <input type="text" class="otp-input" maxlength="1" required pattern="[0-9]">
+                        <input type="text" class="otp-input" maxlength="1" required pattern="[0-9]">
+                        <input type="text" class="otp-input" maxlength="1" required pattern="[0-9]">
+                        <input type="text" class="otp-input" maxlength="1" required pattern="[0-9]">
+                        <input type="text" class="otp-input" maxlength="1" required pattern="[0-9]">
+                        <input type="text" class="otp-input" maxlength="1" required pattern="[0-9]">
+                    </div>
+
+                    <div class="otp-expiry">
+                        Code expires in: <span id="timer" class="timer-countdown">05:00</span>
+                    </div>
+
+                    <button type="submit" id="btn-verify" class="btn btn-primary">
+                        <span class="btn-text">Verify Account</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                </form>
+
+                <div class="card-footer text-center">
+                    <p>Didn't receive the code? <button id="btn-resend" class="btn-link" disabled>Resend Code</button></p>
+                </div>
+            </section>
+
+            <!-- VIEW 3: REGISTRATION SUCCESS / DASHBOARD -->
+            <section id="success-view" class="card hidden">
+                <div class="success-header text-center">
+                    <div class="success-animation">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                    </div>
+                    <h1>Account Created!</h1>
+                    <p class="subtitle">Your DHL account has been verified successfully. Welcome onboard!</p>
+                </div>
+
+                <div class="success-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Full Name:</span>
+                        <span class="detail-val" id="success-name">John Doe</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-val" id="success-email">john.doe@company.com</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Status:</span>
+                        <span class="badge badge-success">Active & Verified</span>
+                    </div>
+                </div>
+
+                <button id="btn-dashboard" class="btn btn-primary">
+                    Go to DHL Dashboard
+                </button>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="dhl-footer">
+            <p>&copy; 2026 DHL. All rights reserved. <a href="#" class="dhl-link-sub">Terms of Use</a> | <a href="#" class="dhl-link-sub">Privacy Notice</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
